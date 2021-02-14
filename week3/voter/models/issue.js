@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const issueSchema = new Schema ({
     issue: {
-        type: String
+        type: String,
+        required: true
     }
 })
 
