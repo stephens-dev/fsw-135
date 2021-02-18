@@ -9,6 +9,15 @@ const issueSchema = new Schema ({
     textbox: {
         type: String,
         required: true
+    },
+    datePosted: {
+        type: Date,
+        default: Date.now
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     }
 })
 

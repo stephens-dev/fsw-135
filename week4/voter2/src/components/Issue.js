@@ -1,8 +1,9 @@
 // import React, { useContext } from 'react'
-// import { UserContext, addIssue } from '../context/UserProvider.js'
+import { UserContext } from '../context/UserProvider.js'
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import IssueDisplay from './IssueDisplay'
+// import getIssues from '../context/UserProvider'
 // const userAxios = axios.create()
 
 // import {handleChange, handleSubmit} from './Auth'
@@ -39,8 +40,10 @@ function Issue(props) {
         setInputs(initInputs)
     }
     const {select, textbox} = inputs
+    const {getIssues} = useContext(UserContext)
     return (
         <div>
+            <button onClick={getIssues}>Refresh Post's</button>
             <form onSubmit={handleSubmit}>
                 <label>
                     What Issue would you like to discuss

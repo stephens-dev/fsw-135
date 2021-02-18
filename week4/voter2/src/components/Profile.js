@@ -11,12 +11,24 @@ function Profile(props) {
         },
 
     } = useContext(UserContext)
+
+    function UserIssueList(props) {
+        console.log(props)
+       const {userissues} = props
+       return (
+           <div>
+               { userissues.map(issue => <IssueDisplay {...issue} key={issue._id }/> ) }
+           </div>
+       )
+   }
     const {Issues} = props
+    const {userissues,getUserIssues} = useContext(UserContext)
     return (
         <div>
             <h1> Logged in as {username}</h1>
             <h1>Issues you have posted</h1>
-            {/* <IssueList Issues={Issues}/> */}
+            <UserIssueList userissues={userissues}/>
+            <button onClick={getUserIssues}>Testing</button>
 
         </div>
     )

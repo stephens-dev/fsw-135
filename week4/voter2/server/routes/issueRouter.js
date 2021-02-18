@@ -25,6 +25,16 @@ issueRouter.post("/", (req, res, next) => {
     
  })
 
+ issueRouter.get("/user", (req, res, next) => {
+  Issue.find({ user: req.user._id }, (err, Issue) => {
+    if(err){
+      res.status(500)
+      return next(err)
+    }
+    return res.status(200).send(Issue)
+  })
+})
+
 //  issueRouter.delete("/:issueId", (req, res, next) => {
 //      Issue.findOneAndDelete(
 //          {_id: req.params.issueId},
