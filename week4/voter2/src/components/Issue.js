@@ -9,8 +9,8 @@ import IssueDisplay from './IssueDisplay'
 // import {handleChange, handleSubmit} from './Auth'
 
 const initInputs = {
-    select: "",
-    textbox: ""
+    issue: "",
+    complaint: ""
 }
 
  function IssueList(props) {
@@ -39,7 +39,7 @@ function Issue(props) {
         addIssue(inputs)
         setInputs(initInputs)
     }
-    const {select, textbox} = inputs
+    const {issue, complaint} = inputs
     const {getIssues} = useContext(UserContext)
     return (
         <div>
@@ -47,7 +47,7 @@ function Issue(props) {
             <form onSubmit={handleSubmit}>
                 <label>
                     What Issue would you like to discuss
-                    <select name="select" value={select} onChange={handleChange}>
+                    <select name="issue" value={issue} onChange={handleChange}>
                         <option >Please Choose an Issue</option>
                         <option value="gunControl">Gun Control</option>
                         <option value="climateChange">Climate Change</option>
@@ -55,7 +55,7 @@ function Issue(props) {
                         <option value="immagration">Immagration</option>
                         <option value="healthCare">Health Care</option>
                     </select>
-                    <textarea onChange={handleChange} value={textbox} name="textbox" placeholder="What are your thoughts"/>
+                    <textarea onChange={handleChange} value={complaint} name="complaint" placeholder="What are your thoughts"/>
                 </label>
                 <button onClick={addIssue}>Create</button>
             </form>

@@ -30,7 +30,9 @@ export default function Auth(){
 
   return (
     <div className="auth-container">
-      <h1>Todo App</h1>
+      <h1>  POLITICAL POSTING'S</h1>
+      <h3>Stay up to date on todays political issues ,and share your stance. </h3>
+        <h3>You can also make friends and see other sides of an issue you may not have come across.</h3>
       
         
           <AuthForm 

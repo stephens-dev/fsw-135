@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const issueSchema = new Schema ({
-    select: {
+    issue: {
         type: String,
         required: true
     },
-    textbox: {
+    complaint: {
         type: String,
         required: true
     },
