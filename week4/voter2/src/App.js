@@ -7,24 +7,32 @@ import Navbar from './components/Navbar'
 import { UserContext } from './context/UserProvider.js'
 import Profile from './components/Profile'
 import Issue from './components/Issue';
+import ProtectedRoute from './components/ProtectedRoutes'
+
 function App() {
   const { token, logout, addIssue, Issues} = useContext(UserContext)
 
   return (
     <div className="App">
-       <Navbar  logout={logout}  />
+       {token && <Navbar  logout={logout}  />}
       <Switch>
         <Route 
           exact path="/" 
            render={() => token ? <Redirect to="/profile"/> : <Auth />}
         />
-        <Route
+        <ProtectedRoute
         path="/profile"
-        render={() => <Profile />}
+        component={Profile}
+        redirectTo='/'
+        token={token}
         />
-        <Route 
+        <ProtectedRoute 
         path="/Issue"
-        render={() => <Issue addIssue={addIssue} Issues={Issues}/>}
+        component={Issue}
+        redirectTo='/'
+        addIssue={addIssue} 
+        Issues={Issues}
+        token={token}
         />
       </Switch>
     </div>

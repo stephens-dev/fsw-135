@@ -17,10 +17,18 @@ export default function UserProvider(props){
     user: JSON.parse(localStorage.getItem("user")) || {}, 
     token: localStorage.getItem("token") || "", 
     Issues: [],
-    userissues: []
+    userissues: [],
+    errMsg: ''
   }
 
   const [userState, setUserState] = useState(initState)
+
+  function handleErr(errMsg) {
+    setUserState(prevState => ({
+      ...prevState,
+      errMsg
+    }))
+  }
 
   function signup(credentials){
     axios.post("/auth/signup", credentials)
@@ -34,7 +42,7 @@ export default function UserProvider(props){
           token
         }))
       })
-      .catch(err => console.log(err.response.data.errMsg))
+      .catch(err => handleErr(err.response.data.errMsg))
   }
 
   function login(credentials){
@@ -50,7 +58,7 @@ export default function UserProvider(props){
           token
         }))
       })
-      .catch(err => console.log(err.response.data.errMsg))
+      .catch(err => handleErr(err.response.data.errMsg))
   }
 
   function logout(){
@@ -68,8 +76,6 @@ export default function UserProvider(props){
   function getIssues(){
     userAxios.get("/api/Issue")
       .then(res => {
-        // const {Issues} = res.data
-        // localStorage.setItem('Issues', JSON.stringify(Issues))
         setUserState(prevState => ({
           ...prevState,
           Issues: res.data

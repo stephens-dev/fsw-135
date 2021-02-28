@@ -8,7 +8,7 @@ export default function Auth(){
   const [inputs, setInputs] = useState(initInputs)
   const [toggle, setToggle] = useState(false)
 
-  const { signup, login } = useContext(UserContext)
+  const { signup, login, errMsg } = useContext(UserContext)
 
   function handleChange(e){
     const {name, value} = e.target
@@ -40,7 +40,7 @@ export default function Auth(){
             // handleSubmit={handleSignup}
             inputs={inputs}
             btnText="Sign up"
-            
+            errMsg={errMsg}
           />
        <button onClick={handleLogin}>Login</button>
       <button onClick={handleSignup}>Create New Profile</button>
