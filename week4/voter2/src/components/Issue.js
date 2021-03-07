@@ -15,17 +15,22 @@ const initInputs = {
 
  function IssueList(props) {
      console.log(props)
-    const {Issues} = props
+    const {Issues, userData} = props
     return (
         <div>
-            { Issues.map(issue => <IssueDisplay {...issue} key={issue._id }/> ) }
+            { Issues.map((issue,i) =>{ 
+                var username; 
+                if (userData[i]._id === issue._id) {
+                    username = userData[i].username
+                } 
+                return <IssueDisplay  {...issue} key={issue._id } username={username}/> }) }
         </div>
     )
 }
 
 function Issue(props) {
     const [inputs, setInputs] = useState(initInputs)
-    const {addIssue,Issues} = props
+    const {addIssue,Issues, deleteIssue, userData} = props
    console.log(props)
     function handleChange(e) {
         const {name, value} = e.target
@@ -38,15 +43,18 @@ function Issue(props) {
         e.preventDefault()
         addIssue(inputs)
         setInputs(initInputs)
+        deleteIssue(inputs, props.id)
     }
     const {issue, complaint} = inputs
-    const {getIssues} = useContext(UserContext)
+    const {getIssues, user: {username}, getUserName} = useContext(UserContext)
     return (
-        <div>
+            <div className="issue-color">
+        <div className="main-issue">
             <button onClick={getIssues}>Refresh Post's</button>
-            <form onSubmit={handleSubmit}>
-                <label>
+            <button onClick={getUserName}>Testing</button>
+            <form  onSubmit={handleSubmit}>
                     What Issue would you like to discuss
+                <label className="box">
                     <select name="issue" value={issue} onChange={handleChange}>
                         <option >Please Choose an Issue</option>
                         <option value="gunControl">Gun Control</option>
@@ -57,10 +65,11 @@ function Issue(props) {
                     </select>
                     <textarea onChange={handleChange} value={complaint} name="complaint" placeholder="What are your thoughts"/>
                 </label>
-                <button onClick={addIssue}>Create</button>
+                <button className="cr-button" onClick={addIssue}>Create</button>
             </form>
-            <IssueList Issues={Issues}/>
+            <IssueList Issues={Issues} userData={userData}/>
         </div>
+            </div>
     )
 }
 

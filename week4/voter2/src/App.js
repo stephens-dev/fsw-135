@@ -10,8 +10,9 @@ import Issue from './components/Issue';
 import ProtectedRoute from './components/ProtectedRoutes'
 
 function App() {
-  const { token, logout, addIssue, Issues} = useContext(UserContext)
+  const { token, logout, addIssue, Issues, deleteIssue, userData} = useContext(UserContext)
 
+  // get user name?
   return (
     <div className="App">
        {token && <Navbar  logout={logout}  />}
@@ -30,9 +31,11 @@ function App() {
         path="/Issue"
         component={Issue}
         redirectTo='/'
+        userData={userData}
         addIssue={addIssue} 
         Issues={Issues}
         token={token}
+        deleteIssue={deleteIssue}
         />
       </Switch>
     </div>

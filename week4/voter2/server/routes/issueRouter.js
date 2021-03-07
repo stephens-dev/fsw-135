@@ -35,17 +35,18 @@ issueRouter.post("/", (req, res, next) => {
   })
 })
 
-//  issueRouter.delete("/:issueId", (req, res, next) => {
-//      Issue.findOneAndDelete(
-//          {_id: req.params.issueId},
-//          (err, deletedIssue) => {
-//              if(err) {
-//                  res.status(500)
-//                  return next(err)
-//              }
-//              return res.status(200).send("Successfully Deleted")
-//          }
-//      )
-//  })
+
+ issueRouter.delete("/:issueId", (req, res, next) => {
+     Issue.findOneAndDelete(
+         {_id: req.params.issueId},
+         (err, deletedIssue) => {
+             if(err) {
+                 res.status(500)
+                 return next(err)
+             }
+             return res.status(200).send("Successfully Deleted")
+         }
+     )
+ })
 
 module.exports = issueRouter

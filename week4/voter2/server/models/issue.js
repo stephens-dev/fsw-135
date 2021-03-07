@@ -19,6 +19,7 @@ const issueSchema = new Schema ({
         ref: "User",
         required: true
     }
+   
 })
 
 module.exports = mongoose.model("Issue", issueSchema)

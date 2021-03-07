@@ -18,7 +18,9 @@ export default function UserProvider(props){
     token: localStorage.getItem("token") || "", 
     Issues: [],
     userissues: [],
-    errMsg: ''
+    errMsg: '',
+    userData: []
+
   }
 
   const [userState, setUserState] = useState(initState)
@@ -76,12 +78,26 @@ export default function UserProvider(props){
   function getIssues(){
     userAxios.get("/api/Issue")
       .then(res => {
+        
         setUserState(prevState => ({
           ...prevState,
-          Issues: res.data
+          Issues: res.data,
+          
+          
         }))
       })
       .catch(err => console.log(err))
+  }
+  
+  function getUserName(props) {
+    userAxios.get("/api/user")
+    .then(res => {
+      setUserState(prevState => ({
+        ...prevState,
+        userData: res.data
+      }))
+      console.log(initState.userData)
+    }).catch(err => console.log(err))
   }
 
   function getUserIssues(){
@@ -109,6 +125,15 @@ export default function UserProvider(props){
       .catch(err => console.log(err))
   }
 
+  function deleteIssue(todoId) {
+    userAxios.delete("/api/issue/" + todoId)
+    .then(res => {
+      // setUserState(prevState => prevState.filter(props._id !== todoId))
+      console.log(props)
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -118,7 +143,9 @@ export default function UserProvider(props){
         logout,
         addIssue,
         getIssues,
-        getUserIssues
+        getUserIssues,
+        getUserName,
+        deleteIssue
       }}>
       { props.children }
     </UserContext.Provider>

@@ -24,9 +24,9 @@ function Profile(props) {
     const {Issues} = props
     const {userissues,getUserIssues} = useContext(UserContext)
     return (
-        <div>
-            <h1> Logged in as {username}</h1>
-            <h1>Issues you have posted</h1>
+        <div className="profile">
+            <h1 className="logged"> Logged in as {username}</h1>
+            <h1 className="profile-i">Issues you have posted</h1>
             <UserIssueList userissues={userissues}/>
             <button onClick={getUserIssues}>Testing</button>
 

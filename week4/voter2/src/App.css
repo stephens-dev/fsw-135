@@ -8,3 +8,67 @@
   height: 40px;
   background-color: #3339;
 }
+.signform {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: 43.2%;
+  margin-bottom: -25px;
+}
+.auth-container {
+  background-color: #413939;
+  padding-bottom: 23.8%;
+  padding-top: 5%;
+}
+.openText {
+  text-align: center;
+  font-size: large;
+  width: 30%;
+  margin-left: 35%;
+}
+.main-issue {
+  text-align: center;
+}
+.issue-color {
+  background-color: gray;
+  padding-bottom: 40%;
+}
+.each-issue {
+ display: flex;
+ flex-direction: column;
+ border: solid 2px;
+ border-radius: 25px;
+ width: 50%;
+ margin-left: 25%;
+ margin-top: 10px;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.cr-button {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: forestgreen;
+}
+.profile {
+  background-color: gray;
+  padding-top: 20px;
+}
+.logged {
+  margin-top: 10px;
+  margin-bottom: 10%;
+}
+.profile-i {
+  text-decoration: underline;
+  font-size: 50px;
+}
+.delete-button {
+  width: 15%;
+  /* border-radius: 5px; */
+  margin-bottom: 10px;
+  margin-left: 42%;
+  background-color: firebrick;
+}
