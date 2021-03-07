@@ -18,12 +18,13 @@ const initInputs = {
     const {Issues, userData} = props
     return (
         <div>
-            { Issues.map((issue,i) =>{ 
+            { Issues.map(issue => <IssueDisplay {...issue} key={issue._id }/> ) }
+            {/* { Issues.map((issue,i) =>{ 
                 var username; 
                 if (userData[i]._id === issue._id) {
                     username = userData[i].username
                 } 
-                return <IssueDisplay  {...issue} key={issue._id } username={username}/> }) }
+                return <IssueDisplay  {...issue} key={issue._id } username={username}/> }) } */}
         </div>
     )
 }
@@ -51,7 +52,7 @@ function Issue(props) {
             <div className="issue-color">
         <div className="main-issue">
             <button onClick={getIssues}>Refresh Post's</button>
-            <button onClick={getUserName}>Testing</button>
+            {/* <button onClick={getUserName}>Testing</button> */}
             <form  onSubmit={handleSubmit}>
                     What Issue would you like to discuss
                 <label className="box">
